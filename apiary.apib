@@ -55,6 +55,20 @@ The Project resource has the following attributes:
 
             { "id": 1, "name": "PasMan", "location": "http://pasman.io", "description": "PasMan is a fast and easy to use service to manage passwords.", "touched": "1405888671", "created": "1405888671", "modified": "1405888671" }
 
+### Edit a Project [PATCH]
+To update a Project send a JSON with updated value for one or more of the Project resource attributes. All attributes values (states) from the previous version of this Project are carried over by default if not included in the hash.
+
++ Request (application/json)
+
+        {
+            "description": "PasMan is an uber fast and easy to use service to manage passwords."
+        }
+
++ Response 200
+    
+        { "id": 1, "name": "PasMan", "location": "http://pasman.io", "description": "PasMan is an uber fast and easy to use service to manage passwords.", "touched": "1405898206", "created": "1405888671", "modified": "1405898206" }
+
+
 ### Remove a Project [DELETE]
 + Response 204
 
@@ -110,6 +124,19 @@ The Indentity resource has the following attributes:
 
             { "id": 1, "project_id": "1", "server": "http://pasman.io", "path": "/admin", "user": "batman", "pass": "3KDhcave", "memo": "Pass rotated every 3m", "tags": [1], "touched": "1405888671", "created": "1405888671", "modified": "1405888671" }
 
+### Edit an Identity [PATCH]
+To update an Identity send a JSON with updated value for one or more of the Identity resource attributes. All attributes values (states) from the previous version of this Identity are carried over by default if not included in the hash.
+
++ Request (application/json)
+
+        {
+            "pass": "think*%cav3"
+        }
+
++ Response 200
+    
+        { "id": 1, "project_id": "1", "server": "http://pasman.io", "path": "/admin", "user": "batman", "pass": "think*%cav3", "memo": "Pass rotated every 3m", "tags": [1], "touched": "1405898206", "created": "1405888671", "modified": "1405898206" }
+
 ### Remove an Identity [DELETE]
 + Response 204
 
@@ -151,6 +178,19 @@ The Tag resource has the following resources:
     + Body
     
             { "id": 1, "name": "webadmin" }
+
+### Edit a Tag [PATCH]
+To update an Identity send a JSON with updated value for one or more of the Identity resource attributes. All attributes values (states) from the previous version of this Identity are carried over by default if not included in the hash.
+
++ Request (application/json)
+
+        {
+            "name": "webpanel"
+        }
+
++ Response 200
+    
+        { "id": 1, "name": "webpanel" }
 
 ### Remove a Tag [DELETE]
 + Response 204
