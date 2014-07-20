@@ -113,7 +113,10 @@ The Indentity resource has the following attributes:
 ### Remove an Identity [DELETE]
 + Response 204
 
-## Group Tags [/tags]
+# Group Tags 
+Tags related resources of the **PasMan API**
+
+## Tags [/tags]
 ### List all Tags [GET]
 + Response 200 (application/json)
 
@@ -134,5 +137,22 @@ The Indentity resource has the following attributes:
 
         { "id": 4, "name": "twitter" }
 
-        
+## Tag [/tags/{id}] 
+A single Tag object.
+
+The Tag resource has the following resources:
+
+- id
+- name
+
+### Retrieve a Tag [GET]
++ Response 200 (application/json)
+
+    + Body
+    
+            { "id": 1, "name": "webadmin" }
+
+### Remove a Tag [DELETE]
++ Response 204
+
 
