@@ -1,0 +1,138 @@
+FORMAT: 1A
+HOST: http://pasman.io
+
+# PasMan
+PasMan API is a *fast and easy to use* service to manage passwords.
+
+# Group Projects
+Projects related resources of the **PasMan API**
+
+## Projects Collection [/projects]
+### List all Projects [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "name": "PasMan", "location": "http://pasman.io", "description": "PasMan is a fast and easy to use service to manage passwords.", "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
+        }, {
+          "id": 2, "name": "Foobar", "location": "http://foobar.io", "description": "Create your own bar of foos.", "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
+        }, {
+          "id": 3, "name": "HelloWorld", "location": "http://helloworld.io", "description": "A service to say hello to the world.", "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
+        }]
+
+### Create a Project [POST]
++ Request (application/json)
+
+        { "name": "CoffeeBeans", "location": "http://coffeebeans.io", "description": "We sell roasted coffee beans." }
+
++ Response 201 (application/json)
+
+        { "id": 4, "name": "CoffeeBeans", "location": "http://coffeebeans.io", "description": "We sell roasted coffee beans.", "touched": "1405888976", "created": "1405888976", "modified": "1405888976" }
+
+## Project [/projects/{id}]
+A single Project object.
+
+The Project resource has the following attributes: 
+
+- id
+- name
+- location
+- description
+- touched
+- created
+- modified
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Project to perform action with. Has example value.
+
+### Retrieve a Project [GET]
++ Response 200 (application/json)
+
+    + Header
+
+            X-My-Header: The Value
+
+    + Body
+
+            { "id": 1, "name": "PasMan", "location": "http://pasman.io", "description": "PasMan is a fast and easy to use service to manage passwords.", "touched": "1405888671", "created": "1405888671", "modified": "1405888671" }
+
+### Remove a Project [DELETE]
++ Response 204
+
+# Group Identities
+Identities related resources of the **PasMan API**
+
+## Identities Collection [/identities]
+### List all Identities [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "project_id": 1, "server": "http://pasman.io", "path": "/admin", "user": "batman", "pass": "3KDhcave", "memo": "Pass rotated every 3m", "tags": [1], "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
+        }, {
+          "id": 2, "project_id": 1, "server": "//cavesoft.io", "path": "/public_html", "user": "batman", "pass": "ckakd@kdbats", "memo": "Pass rotated every 2m", "tags": [2, 3], "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
+        }, {
+          "id": 3, "project_id": 2, "server": "http://foobar.io", "path": "/signin", "user": "bigfoo", "pass": "foos4bars$*@", "memo": "", "tags": [1], "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
+        }]
+
+### Create an Identity [POST]
++ Request (application/json)
+
+        { "project_id": "3", "server": "http://helloworld.io", "path": "/admin", "user": "nihao", "pass": "zia%jian", "memo": "", "tags": [1], "touched": "1405892570", "created": "1405892570", "modified": "1405892570" }
+
++ Response 201 (application/json)
+
+        { "id": 4, "project_id": "3", "server": "http://helloworld.io", "path": "/admin", "user": "nihao", "pass": "zia%jian", "memo": "", "tags": [1], "touched": "1405892570", "created": "1405892570", "modified": "1405892570" }
+
+
+## Identity [/identities/{id}]
+A single Indentity object.
+
+The Indentity resource has the following attributes:
+
+- id
+- project_id
+- server
+- path
+- user
+- pass
+- memo
+- tags
+- touched
+- created
+- modified
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Identity to perform action with. Has example value.
+
+### Retrieve an Identity [GET]
++ Response 200 (application/json)
+
+    + Body
+
+            { "id": 1, "project_id": "1", "server": "http://pasman.io", "path": "/admin", "user": "batman", "pass": "3KDhcave", "memo": "Pass rotated every 3m", "tags": [1], "touched": "1405888671", "created": "1405888671", "modified": "1405888671" }
+
+### Remove an Identity [DELETE]
++ Response 204
+
+## Group Tags [/tags]
+### List all Tags [GET]
++ Response 200 (application/json)
+
+        [{
+          "id": 1, "name": "webadmin"
+        }, {
+          "id": 2, "name": "cpanel"
+        }, {
+          "id": 3, "name": "mysql"
+        }]
+
+### Create a Tag [POST]
++ Request (application/json)
+
+        { "name": "twitter" }
+        
++ Response 201 (application/json)
+
+        { "id": 4, "name": "twitter" }
+
+        
+
