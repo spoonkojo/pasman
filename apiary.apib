@@ -168,7 +168,11 @@ Identities related resources of the **PasMan API**
             "memo": "Pass rotated every 3m",
             "tags": [{
                 "id": 1,
-                "name": "webadmin"
+                "name": "webadmin",
+                "color": {
+                    "bg": "#c9f8a3",
+                    "fg": "#333333"
+                }
             }],
             "meta": {
                 "touched": "1405888671",
@@ -188,10 +192,18 @@ Identities related resources of the **PasMan API**
             "memo": "Pass rotated every 2m",
             "tags": [{
                 "id": 2,
-                "name": "cpanel"
+                "name": "cpanel",
+                "color": {
+                    "bg": "#88ffc6",
+                    "fg": "#333333"
+                }
             },{
                 "id": 3,
-                "name": "mysql"
+                "name": "mysql",
+                "color: {
+                    "bg": "#eeabff",
+                    "fg": "#333333"
+                }
             }],
             "meta": {
                 "touched": "1405888671",
@@ -211,7 +223,11 @@ Identities related resources of the **PasMan API**
             "memo": "",
             "tags": [{
                 "id": 1,
-                "name": "webadmin"
+                "name": "webadmin",
+                "color": {
+                    "bg": "#c9f8a3",
+                    "fg": "#333333"
+                }
             }],
             "meta": {
                 "touched": "1405888671",
@@ -251,7 +267,11 @@ Identities related resources of the **PasMan API**
             "memo": "",
             "tags": [{
                 "id": 1,
-                "name": "webadmin"
+                "name": "webadmin",
+                "color": {
+                    "bg": "#c9f8a3",
+                    "fg": "#333333"
+                }
             }],
             meta: {
                 "touched": "1405892570",
@@ -299,7 +319,11 @@ The Indentity resource has the following attributes:
                 "memo": "Pass rotated every 3m",
                 "tags": [{
                     "id": 1,
-                    "name": "webadmin"
+                    "name": "webadmin",
+                    "color": {
+                        "bg": "#c9f8a3",
+                        "fg": "#333333"
+                    }
                 }],
                 "meta": {
                     "touched": "1405888671",
@@ -337,7 +361,11 @@ Edit project or tags:
             "memo": "Pass rotated every 3m",
             "tags": [{
                 "id": 1,
-                "name": "webadmin"
+                "name": "webadmin",
+                "color": {
+                    "bg": "#c9f8a3",
+                    "fg": "#333333"
+                }
             }],
             "meta": {
                 "touched": "1405898206",
@@ -367,7 +395,11 @@ Edit project or tags:
             "memo": "Pass rotated every 3m",
             "tags": [{
                 "id": 1,
-                "name": "webadmin"
+                "name": "webadmin",
+                "color": {
+                    "bg": "#c9f8a3",
+                    "fg": "#333333"
+                }
             }],
             "meta": {
                 "touched": "1405919947",
@@ -397,10 +429,18 @@ Edit project or tags:
             "memo": "Pass rotated every 3m",
             "tags": [{
                 "id": 2,
-                "name": "cpanel"
+                "name": "cpanel",
+                "color": {
+                    "bg": "#88ffc6",
+                    "fg": "#333333"
+                }
             }, {
                 "id": 3,
-                "name": "mysql"
+                "name": "mysql",
+                "color: {
+                    "bg": "#eeabff",
+                    "fg": "#333333"
+                }
             }],
             "meta": {
                 "touched": "1405919947",
@@ -421,27 +461,47 @@ Tags related resources of the **PasMan API**
 
         [{
             "id": 1,
-            "name": "webadmin"
+            "name": "webadmin",
+            "color": {
+                "bg": "#c9f8a3",
+                "fg": "#333333"
+            }
         }, {
             "id": 2,
-            "name": "cpanel"
+            "name": "cpanel",
+            "color": {
+                "bg": "#88ffc6",
+                "fg": "#333333"
+            }
         }, {
             "id": 3,
-            "name": "mysql"
+            "name": "mysql",
+            "color: {
+                "bg": "#eeabff",
+                "fg": "#333333"
+            }
         }]
 
 ### Create a Tag [POST]
 + Request (application/json)
 
         {
-            "name": "twitter"
+            "name": "twitter",
+            "color": {
+                "bg": "#b8e3ff",
+                "fg": "#333333"
+            }
         }
         
 + Response 201 (application/json)
 
         {
             "id": 4,
-            "name": "twitter"
+            "name": "twitter",
+            "color": {
+                "bg": "#b8e3ff",
+                "fg": "#333333"
+            }
         }
 
 ## Tag [/tags/{id}]
@@ -451,6 +511,7 @@ The Tag resource has the following resources:
 
 - id
 - name
+- color
 
 + Parameters
     + id (required, number, `1`) ... Numeric `id` of the Tag to perform action with.
@@ -462,7 +523,11 @@ The Tag resource has the following resources:
     
             {
                 "id": 1,
-                "name": "webadmin"
+                "name": "webadmin",
+                "color": {
+                    "bg": "#c9f8a3",
+                    "fg": "#333333"
+                }
             }
 
 ### Edit a Tag [PATCH]
@@ -471,14 +536,18 @@ To update an Identity send a JSON with updated value for one or more of the Iden
 + Request (application/json)
 
         {
-            "name": "webpanel"
+            "name": "webpanel",
         }
 
 + Response 200
     
         {
             "id": 1,
-            "name": "webpanel"
+            "name": "webpanel",
+            "color": {
+                "bg": "#c9f8a3",
+                "fg": "#333333"
+            }
         }
 
 ### Remove a Tag [DELETE]
