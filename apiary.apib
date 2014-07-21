@@ -34,21 +34,59 @@ Projects related resources of the **PasMan API**
 + Response 200 (application/json)
 
         [{
-          "id": 1, "name": "PasMan", "location": "http://pasman.io", "description": "PasMan is a fast and easy to use service to manage passwords.", "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
+            "id": 1,
+            "name": "PasMan",
+            "location": "http://pasman.io",
+            "description": "PasMan is a fast and easy to use service to manage passwords.",
+            "meta": {
+                "touched": "1405888671",
+                "created": "1405888671",
+                "modified": "1405888671"
+            }
         }, {
-          "id": 2, "name": "Foobar", "location": "http://foobar.io", "description": "Create your own bar of foos.", "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
+            "id": 2,
+            "name": "Foobar",
+            "location": "http://foobar.io",
+            "description": "Create your own bar of foos.",
+            "meta" : {
+                "touched": "1405888671",
+                "created": "1405888671",
+                "modified": "1405888671"
+            }
         }, {
-          "id": 3, "name": "HelloWorld", "location": "http://helloworld.io", "description": "A service to say hello to the world.", "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
+            "id": 3,
+            "name": "HelloWorld",
+            "location": "http://helloworld.io",
+            "description": "A service to say hello to the world.",
+            "meta": {
+                "touched": "1405888671",
+                "created": "1405888671",
+                "modified": "1405888671"
+            }
         }]
 
 ### Create a Project [POST]
 + Request (application/json)
 
-        { "name": "CoffeeBeans", "location": "http://coffeebeans.io", "description": "We sell roasted coffee beans." }
+        {
+            "name": "CoffeeBeans",
+            "location": "http://coffeebeans.io",
+            "description": "We sell roasted coffee beans."
+        }
 
 + Response 201 (application/json)
 
-        { "id": 4, "name": "CoffeeBeans", "location": "http://coffeebeans.io", "description": "We sell roasted coffee beans.", "touched": "1405888976", "created": "1405888976", "modified": "1405888976" }
+        {
+            "id": 4,
+            "name": "CoffeeBeans",
+            "location": "http://coffeebeans.io",
+            "description": "We sell roasted coffee beans.",
+            "meta": {
+                "touched": "1405888976",
+                "created": "1405888976",
+                "modified": "1405888976"
+            }
+        }
 
 ## Project [/projects/{id}]
 A single Project object.
@@ -69,13 +107,19 @@ The Project resource has the following attributes:
 ### Retrieve a Project [GET]
 + Response 200 (application/json)
 
-    + Header
-
-            X-My-Header: The Value
-
     + Body
 
-            { "id": 1, "name": "PasMan", "location": "http://pasman.io", "description": "PasMan is a fast and easy to use service to manage passwords.", "touched": "1405888671", "created": "1405888671", "modified": "1405888671" }
+            {
+                "id": 1,
+                "name": "PasMan",
+                "location": "http://pasman.io",
+                "description": "PasMan is a fast and easy to use service to manage passwords.",
+                "meta": {
+                    "touched": "1405888671",
+                    "created": "1405888671",
+                    "modified": "1405888671"
+                }
+            }
 
 ### Edit a Project [PATCH]
 To update a Project send a JSON with updated value for one or more of the Project resource attributes. All attributes values (states) from the previous version of this Project are carried over by default if not included in the hash.
@@ -88,7 +132,17 @@ To update a Project send a JSON with updated value for one or more of the Projec
 
 + Response 200
     
-        { "id": 1, "name": "PasMan", "location": "http://pasman.io", "description": "PasMan is an uber fast and easy to use service to manage passwords.", "touched": "1405898206", "created": "1405888671", "modified": "1405898206" }
+        {
+            "id": 1,
+            "name": "PasMan",
+            "location": "http://pasman.io",
+            "description": "PasMan is an uber fast and easy to use service to manage passwords.",
+            "meta": {
+                "touched": "1405898206",
+                "created": "1405888671",
+                "modified": "1405898206"
+            }
+        }
 
 
 ### Remove a Project [DELETE]
@@ -172,11 +226,39 @@ Identities related resources of the **PasMan API**
 
 + Request (application/json)
 
-        { "project_id": "3", "server": "http://helloworld.io", "path": "/admin", "user": "nihao", "pass": "zia%jian", "memo": "", "tags": [1], "touched": "1405892570", "created": "1405892570", "modified": "1405892570" }
+        {
+            "project": 3,
+            "server": "http://helloworld.io",
+            "path": "/admin",
+            "user": "nihao",
+            "pass": "zia%jian",
+            "memo": "",
+            "tags": [1],
+        }
 
 + Response 201 (application/json)
 
-        { "id": 4, "project_id": "3", "server": "http://helloworld.io", "path": "/admin", "user": "nihao", "pass": "zia%jian", "memo": "", "tags": [1], "touched": "1405892570", "created": "1405892570", "modified": "1405892570" }
+        {
+            "id": 4,
+            "project": {
+                "id": 3,
+                "name": "HelloWorld"
+            },
+            "server": "http://helloworld.io",
+            "path": "/admin",
+            "user": "nihao",
+            "pass": "zia%jian",
+            "memo": "",
+            "tags": [{
+                "id": 1,
+                "name": "webadmin"
+            }],
+            meta: {
+                "touched": "1405892570",
+                "created": "1405892570",
+                "modified": "1405892570"
+            }
+        }
 
 
 ## Identity [/identities/{id}]
@@ -338,21 +420,29 @@ Tags related resources of the **PasMan API**
 + Response 200 (application/json)
 
         [{
-          "id": 1, "name": "webadmin"
+            "id": 1,
+            "name": "webadmin"
         }, {
-          "id": 2, "name": "cpanel"
+            "id": 2,
+            "name": "cpanel"
         }, {
-          "id": 3, "name": "mysql"
+            "id": 3,
+            "name": "mysql"
         }]
 
 ### Create a Tag [POST]
 + Request (application/json)
 
-        { "name": "twitter" }
+        {
+            "name": "twitter"
+        }
         
 + Response 201 (application/json)
 
-        { "id": 4, "name": "twitter" }
+        {
+            "id": 4,
+            "name": "twitter"
+        }
 
 ## Tag [/tags/{id}]
 A single Tag object.
@@ -370,7 +460,10 @@ The Tag resource has the following resources:
 
     + Body
     
-            { "id": 1, "name": "webadmin" }
+            {
+                "id": 1,
+                "name": "webadmin"
+            }
 
 ### Edit a Tag [PATCH]
 To update an Identity send a JSON with updated value for one or more of the Identity resource attributes. All attributes values (states) from the previous version of this Identity are carried over by default if not included in the hash.
@@ -383,7 +476,10 @@ To update an Identity send a JSON with updated value for one or more of the Iden
 
 + Response 200
     
-        { "id": 1, "name": "webpanel" }
+        {
+            "id": 1,
+            "name": "webpanel"
+        }
 
 ### Remove a Tag [DELETE]
 + Response 204
