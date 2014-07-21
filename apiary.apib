@@ -4,6 +4,28 @@ HOST: http://pasman.io
 # PasMan
 PasMan API is a *fast and easy to use* service to manage passwords.
 
+##Allowed HTTPs requests:
+
+- `POST` - Creates or updates a resource
+- `PUT` - Updates a resource
+- `PATCH` - Partial update
+- `GET` - Retrieves a resource or list of resources
+- `DELETE` - Delete a resource
+
+##Typical Server Responses
+
+- 200 `OK` - The request was successful (some API calls may return 201 instead).
+- 201 `Created` - The request was successful and a resource was created.
+- 204 `No Content` - The request was successful but there is no representation to return (that is, the response is empty).
+- 400 `Bad Request` - The request could not be understood or was missing required parameters.
+- 401 `Unauthorized` - Authentication failed or user does not have permissions for the requested operation.
+- 403 `Forbidden` - Access denied.
+- 404 `Not Found` - Resource was not found.
+- 405 `Method Not Allowed` - Requested method is not supported for the specified resource.
+- 429 `Too Many Requests` - Exceeded GoodData API limits. Pause requests, wait one minute, and try again. 
+- 503 `Service Unavailable` - The service is temporary unavailable (e.g. scheduled Platform Maintenance). Try again later.
+
+
 # Group Projects
 Projects related resources of the **PasMan API**
 
@@ -42,7 +64,7 @@ The Project resource has the following attributes:
 - modified
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Project to perform action with. Has example value.
+    + id (required, number, `1`) ... Numeric `id` of the Project to perform action with.
 
 ### Retrieve a Project [GET]
 + Response 200 (application/json)
@@ -79,15 +101,75 @@ Identities related resources of the **PasMan API**
 ### List all Identities [GET]
 + Response 200 (application/json)
 
-        [{
-          "id": 1, "project_id": 1, "server": "http://pasman.io", "path": "/admin", "user": "batman", "pass": "3KDhcave", "memo": "Pass rotated every 3m", "tags": [1], "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
-        }, {
-          "id": 2, "project_id": 1, "server": "//cavesoft.io", "path": "/public_html", "user": "batman", "pass": "ckakd@kdbats", "memo": "Pass rotated every 2m", "tags": [2, 3], "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
-        }, {
-          "id": 3, "project_id": 2, "server": "http://foobar.io", "path": "/signin", "user": "bigfoo", "pass": "foos4bars$*@", "memo": "", "tags": [1], "touched": "1405888671", "created": "1405888671", "modified": "1405888671"
+        [{ 
+            "id": 1,
+            "project": { 
+                "id": 1,
+                "name": "PasMan"
+            },
+            "server": "http://pasman.io",
+            "path": "/admin",
+            "user": "batman",
+            "pass": "3KDhcave",
+            "memo": "Pass rotated every 3m",
+            "tags": [{
+                "id": 1,
+                "name": "webadmin"
+            }],
+            "meta": {
+                "touched": "1405888671",
+                "created": "1405888671",
+                "modified": "1405888671"
+            }
+        }, { 
+            "id": 2,
+            "project": { 
+                "id": 1,
+                "name": "PasMan"
+            },
+            "server": "http://cavesoft.io",
+            "path": "/public_html",
+            "user": "batman",
+            "pass": "ckakd@kdbats",
+            "memo": "Pass rotated every 2m",
+            "tags": [{
+                "id": 2,
+                "name": "cpanel"
+            },{
+                "id": 3,
+                "name": "mysql"
+            }],
+            "meta": {
+                "touched": "1405888671",
+                "created": "1405888671",
+                "modified": "1405888671"
+            }
+        }, { 
+            "id": 3,
+            "project": { 
+                "id": 2,
+                "name": "FooBar"
+            },
+            "server": "http://foobar.io",
+            "path": "/signin",
+            "user": "bigfoo",
+            "pass": "foos4bars$*@",
+            "memo": "",
+            "tags": [{
+                "id": 1,
+                "name": "webadmin"
+            }],
+            "meta": {
+                "touched": "1405888671",
+                "created": "1405888671",
+                "modified": "1405888671"
+            }
         }]
 
 ### Create an Identity [POST]
+- `project` (required, integer) ... Assign identity to another project by project id
+- `tags` (optional, array) ... Edit tags with array of tag ids
+
 + Request (application/json)
 
         { "project_id": "3", "server": "http://helloworld.io", "path": "/admin", "user": "nihao", "pass": "zia%jian", "memo": "", "tags": [1], "touched": "1405892570", "created": "1405892570", "modified": "1405892570" }
@@ -103,7 +185,7 @@ A single Indentity object.
 The Indentity resource has the following attributes:
 
 - id
-- project_id
+- project
 - server
 - path
 - user
@@ -115,17 +197,42 @@ The Indentity resource has the following attributes:
 - modified
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Identity to perform action with. Has example value.
+    + id (required, number, `1`) ... Numeric `id` of the Identity to perform action with.
 
 ### Retrieve an Identity [GET]
 + Response 200 (application/json)
 
     + Body
 
-            { "id": 1, "project_id": "1", "server": "http://pasman.io", "path": "/admin", "user": "batman", "pass": "3KDhcave", "memo": "Pass rotated every 3m", "tags": [1], "touched": "1405888671", "created": "1405888671", "modified": "1405888671" }
+            { 
+                "id": 1,
+                "project": { 
+                    "id": 1,
+                    "name": "PasMan"
+                },
+                "server": "http://pasman.io",
+                "path": "/admin",
+                "user": "batman",
+                "pass": "3KDhcave",
+                "memo": "Pass rotated every 3m",
+                "tags": [{
+                    "id": 1,
+                    "name": "webadmin"
+                }],
+                "meta": {
+                    "touched": "1405888671",
+                    "created": "1405888671",
+                    "modified": "1405888671"
+                }
+            }
 
 ### Edit an Identity [PATCH]
 To update an Identity send a JSON with updated value for one or more of the Identity resource attributes. All attributes values (states) from the previous version of this Identity are carried over by default if not included in the hash.
+
+Edit project or tags:
+
+- `project` (optional, integer) ... Assign identity to another project by project id
+- `tags` (optional, array) ... Edit tags with array of tag ids
 
 + Request (application/json)
 
@@ -135,7 +242,90 @@ To update an Identity send a JSON with updated value for one or more of the Iden
 
 + Response 200
     
-        { "id": 1, "project_id": "1", "server": "http://pasman.io", "path": "/admin", "user": "batman", "pass": "think*%cav3", "memo": "Pass rotated every 3m", "tags": [1], "touched": "1405898206", "created": "1405888671", "modified": "1405898206" }
+        { 
+            "id": 1,
+            "project": { 
+                "id": 1,
+                "name": "PasMan"
+            },
+            "server": "http://pasman.io",
+            "path": "/admin",
+            "user": "batman",
+            "pass": "think*%cav3",
+            "memo": "Pass rotated every 3m",
+            "tags": [{
+                "id": 1,
+                "name": "webadmin"
+            }],
+            "meta": {
+                "touched": "1405898206",
+                "created": "1405888671",
+                "modified": "1405898206"
+            }
+        }
+
++ Request (application/json)
+
+        {
+            "project": 2
+        }
+
++ Response 200
+
+        { 
+            "id": 1,
+            "project": { 
+                "id": 2,
+                "name": "FooBar"
+            },
+            "server": "http://pasman.io",
+            "path": "/admin",
+            "user": "batman",
+            "pass": "think*%cav3",
+            "memo": "Pass rotated every 3m",
+            "tags": [{
+                "id": 1,
+                "name": "webadmin"
+            }],
+            "meta": {
+                "touched": "1405919947",
+                "created": "1405888671",
+                "modified": "1405919947"
+            }
+        }
+
++ Request (application/json)
+
+        {
+            "tags": [2, 3]
+        }
+
++ Response 200
+
+        { 
+            "id": 1,
+            "project": { 
+                "id": 2,
+                "name": "FooBar"
+            },
+            "server": "http://pasman.io",
+            "path": "/admin",
+            "user": "batman",
+            "pass": "think*%cav3",
+            "memo": "Pass rotated every 3m",
+            "tags": [{
+                "id": 2,
+                "name": "cpanel"
+            }, {
+                "id": 3,
+                "name": "mysql"
+            }],
+            "meta": {
+                "touched": "1405919947",
+                "created": "1405888671",
+                "modified": "1405919947"
+            }
+        }
 
 ### Remove an Identity [DELETE]
 + Response 204
@@ -164,13 +354,16 @@ Tags related resources of the **PasMan API**
 
         { "id": 4, "name": "twitter" }
 
-## Tag [/tags/{id}] 
+## Tag [/tags/{id}]
 A single Tag object.
 
 The Tag resource has the following resources:
 
 - id
 - name
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Tag to perform action with.
 
 ### Retrieve a Tag [GET]
 + Response 200 (application/json)
